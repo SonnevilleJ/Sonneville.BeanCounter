@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Web.Http;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
+using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
 
@@ -46,11 +46,20 @@ namespace OwinWebApp
 
             // Define parameters of request.
             var listRequest = service.Files.List();
-            listRequest.PageSize = 10;
+            listRequest.PageSize = 1000;
             listRequest.Fields = "nextPageToken, files(id, name)";
+            FileList fileList;
 
             // List files.
-            return listRequest.Execute().Files.Select(file => file.Name);
+            do
+            {
+                fileList = listRequest.Execute();
+                foreach (var file in fileList.Files)
+                {
+                    yield return file.Name;
+                }
+                listRequest.PageToken = fileList.NextPageToken;
+            } while (fileList.NextPageToken != null);
         }
     }
 }
