@@ -54,8 +54,8 @@
           <Private>True</Private>
       </Reference>
       <Reference
-              Include="Google.Apis.Drive.v3, Version=1.20.0.711, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-          <HintPath>..\packages\Google.Apis.Drive.v3.1.20.0.711\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+              Include="Google.Apis.Drive.v3, Version=1.20.0.749, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+          <HintPath>..\packages\Google.Apis.Drive.v3.1.20.0.749\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
           <Private>True</Private>
       </Reference>
       <Reference
