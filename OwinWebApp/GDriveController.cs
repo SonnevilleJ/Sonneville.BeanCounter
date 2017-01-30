@@ -1,51 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Web.Http;
-using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
-using Google.Apis.Util.Store;
+using Sonneville.Google;
+using Sonneville.Utilities.Reflection;
 
 namespace OwinWebApp
 {
     public class GDriveController : ApiController
     {
-        private const string ApplicationName = "Locally hosted app";
-
-        public UserCredential Credential { get; }
+        private readonly DriveService _driveService;
 
         public GDriveController()
         {
-            using (var stream = new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+            var tokenFullPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                ExecutingAssemblyInfo.Product,
+                ExecutingAssemblyInfo.Title);
+            var userCredential = GoogleOAuth.CreateCredential("Google API Credentials.json", tokenFullPath, new[] {DriveService.Scope.DriveFile});
+            _driveService = new DriveService(new BaseClientService.Initializer
             {
-                var credPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-                credPath = Path.Combine(credPath, ".credentials/drive-dotnet-quickstart.json");
-
-                Credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                        GoogleClientSecrets.Load(stream).Secrets,
-                        new[] {DriveService.Scope.DriveReadonly},
-                        "user",
-                        CancellationToken.None,
-                        new FileDataStore(credPath, true))
-                    .Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
+                HttpClientInitializer = userCredential,
+                ApplicationName = ExecutingAssemblyInfo.Title,
+            });
         }
 
         public IEnumerable<string> Get()
         {
-            // Create Drive API service.
-            var service = new DriveService(new BaseClientService.Initializer
-            {
-                HttpClientInitializer = Credential,
-                ApplicationName = ApplicationName,
-            });
-
             // Define parameters of request.
-            var listRequest = service.Files.List();
+            var listRequest = _driveService.Files.List();
             listRequest.PageSize = 1000;
             listRequest.Fields = "nextPageToken, files(id, name)";
             FileList fileList;
