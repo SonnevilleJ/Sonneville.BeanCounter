@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Comments
 {
     public interface ICreateRequest
@@ -13,5 +15,25 @@ namespace Sonneville.Google.Wrappers.Comments
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        CommentsResource.CreateRequest Impl { get; }
+    }
+
+    public class CreateRequestWrapper : ICreateRequest
+    {
+        public CreateRequestWrapper(CommentsResource.CreateRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public CommentsResource.CreateRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

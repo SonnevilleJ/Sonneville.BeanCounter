@@ -1,4 +1,6 @@
-﻿namespace Sonneville.Google.Wrappers.Replies
+﻿using Google.Apis.Drive.v3;
+
+namespace Sonneville.Google.Wrappers.Replies
 {
     public interface IRepliesResource
     {
@@ -34,5 +36,42 @@
         /// comment.</param>
         /// <param name="replyId">The ID of the reply.</param>
         IUpdateRequest Update(IReply body, string fileId, string commentId, string replyId);
+
+        RepliesResource Impl { get; }
+    }
+
+    public class RepliesResourceWrapper : IRepliesResource
+    {
+        public RepliesResourceWrapper(RepliesResource impl)
+        {
+            Impl = impl;
+        }
+
+        public RepliesResource Impl { get; }
+
+        public ICreateRequest Create(IReply body, string fileId, string commentId)
+        {
+            return new CreateRequestWrapper(Impl.Create(body.Impl, fileId, commentId));
+        }
+
+        public IDeleteRequest Delete(string fileId, string commentId, string replyId)
+        {
+            return new DeleteRequestWrapper(Impl.Delete(fileId, commentId, replyId));
+        }
+
+        public IGetRequest Get(string fileId, string commentId, string replyId)
+        {
+            return new GetRequestWrapper(Impl.Get(fileId, commentId, replyId));
+        }
+
+        public IListRequest List(string fileId, string commentId)
+        {
+            return new ListRequestWrapper(Impl.List(fileId, commentId));
+        }
+
+        public IUpdateRequest Update(IReply body, string fileId, string commentId, string replyId)
+        {
+            return new UpdateRequestWrapper(Impl.Update(body.Impl, fileId, commentId, replyId));
+        }
     }
 }

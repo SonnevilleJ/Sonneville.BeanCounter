@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Google.Apis.Drive.v3.Data;
 using Sonneville.Google.Wrappers.Replies;
 
 namespace Sonneville.Google.Wrappers.Comments
@@ -53,5 +55,107 @@ namespace Sonneville.Google.Wrappers.Comments
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        Comment Impl { get; }
+    }
+
+    public class CommentWrapper : IComment
+    {
+        public CommentWrapper(Comment impl)
+        {
+            Impl = impl;
+        }
+
+        public Comment Impl { get; }
+
+        public string Anchor
+        {
+            get { return Impl.Anchor; }
+            set { Impl.Anchor = value; }
+        }
+
+        public IUser Author
+        {
+            get { return new UserWrapper(Impl.Author); }
+            set { Impl.Author = value.Impl; }
+        }
+
+        public string Content
+        {
+            get { return Impl.Content; }
+            set { Impl.Content = value; }
+        }
+
+        public string CreatedTimeRaw
+        {
+            get { return Impl.CreatedTimeRaw; }
+            set { Impl.CreatedTimeRaw = value; }
+        }
+
+        public DateTime? CreatedTime
+        {
+            get { return Impl.CreatedTime; }
+            set { Impl.CreatedTime = value; }
+        }
+
+        public bool? Deleted
+        {
+            get { return Impl.Deleted; }
+            set { Impl.Deleted = value; }
+        }
+
+        public string HtmlContent
+        {
+            get { return Impl.HtmlContent; }
+            set { Impl.HtmlContent = value; }
+        }
+
+        public string Id
+        {
+            get { return Impl.Id; }
+            set { Impl.Id = value; }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public string ModifiedTimeRaw
+        {
+            get { return Impl.ModifiedTimeRaw; }
+            set { Impl.ModifiedTimeRaw = value; }
+        }
+
+        public DateTime? ModifiedTime
+        {
+            get { return Impl.ModifiedTime; }
+            set { Impl.ModifiedTime = value; }
+        }
+
+        public IQuotedFileContentData QuotedFileContent
+        {
+            get { return new QuotedFileContentDataWrapper(Impl.QuotedFileContent); }
+            set { Impl.QuotedFileContent = value.Impl; }
+        }
+
+        public IList<IReply> Replies
+        {
+            get { return Impl.Replies.Select(reply => new ReplyWrapper(reply)).Cast<IReply>().ToList(); }
+            set { Impl.Replies = value.Select(reply => reply.Impl).ToList(); }
+        }
+
+        public bool? Resolved
+        {
+            get { return Impl.Resolved; }
+            set { Impl.Resolved = value; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

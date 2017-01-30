@@ -33,5 +33,77 @@ namespace Sonneville.Google.Wrappers.About
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        global::Google.Apis.Drive.v3.Data.About Impl { get; }
+    }
+
+    public class AboutWrapper : IAbout
+    {
+        public AboutWrapper(global::Google.Apis.Drive.v3.Data.About impl)
+        {
+            Impl = impl;
+        }
+
+        public global::Google.Apis.Drive.v3.Data.About Impl { get; }
+
+        public bool? AppInstalled
+        {
+            get { return Impl.AppInstalled; }
+            set { Impl.AppInstalled = value; }
+        }
+
+        public IDictionary<string, IList<string>> ExportFormats
+        {
+            get { return Impl.ExportFormats; }
+            set { Impl.ExportFormats = value; }
+        }
+
+        public IList<string> FolderColorPalette
+        {
+            get { return Impl.FolderColorPalette; }
+            set { Impl.FolderColorPalette = value; }
+        }
+
+        public IDictionary<string, IList<string>> ImportFormats
+        {
+            get { return Impl.ImportFormats; }
+            set { Impl.ImportFormats = value; }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public IDictionary<string, long?> MaxImportSizes
+        {
+            get { return Impl.MaxImportSizes; }
+            set { Impl.MaxImportSizes = value; }
+        }
+
+        public long? MaxUploadSize
+        {
+            get { return Impl.MaxUploadSize; }
+            set { Impl.MaxUploadSize = value; }
+        }
+
+        public IStorageQuotaData StorageQuota
+        {
+            get { return new StorageQuotaDataWrapper(Impl.StorageQuota); }
+            set { Impl.StorageQuota = value.Impl; }
+        }
+
+        public IUser User
+        {
+            get { return new UserWrapper(Impl.User); }
+            set { Impl.User = value.Impl; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

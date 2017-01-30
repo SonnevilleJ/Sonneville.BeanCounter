@@ -1,4 +1,6 @@
-﻿namespace Sonneville.Google.Wrappers.Permissions
+﻿using Google.Apis.Drive.v3;
+
+namespace Sonneville.Google.Wrappers.Permissions
 {
     public interface IPermissionsResource
     {
@@ -29,5 +31,42 @@
         /// <param name="permissionId">The ID of the
         /// permission.</param>
         IUpdateRequest Update(IPermission body, string fileId, string permissionId);
+
+        PermissionsResource Impl { get; }
+    }
+
+    public class PermissionsResourceWrapper : IPermissionsResource
+    {
+        public PermissionsResourceWrapper(PermissionsResource impl)
+        {
+            Impl = impl;
+        }
+
+        public PermissionsResource Impl { get; }
+
+        public ICreateRequest Create(IPermission body, string fileId)
+        {
+            return new CreateRequestWrapper(Impl.Create(body.Impl, fileId));
+        }
+
+        public IDeleteRequest Delete(string fileId, string permissionId)
+        {
+            return new DeleteRequestWrapper(Impl.Delete(fileId, permissionId));
+        }
+
+        public IGetRequest Get(string fileId, string permissionId)
+        {
+            return new GetRequestWrapper(Impl.Get(fileId, permissionId));
+        }
+
+        public IListRequest List(string fileId)
+        {
+            return new ListRequestWrapper(Impl.List(fileId));
+        }
+
+        public IUpdateRequest Update(IPermission body, string fileId, string permissionId)
+        {
+            return new UpdateRequestWrapper(Impl.Update(body.Impl, fileId, permissionId));
+        }
     }
 }

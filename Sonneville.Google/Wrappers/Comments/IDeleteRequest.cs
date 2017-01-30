@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Comments
 {
     public interface IDeleteRequest
@@ -16,5 +18,27 @@ namespace Sonneville.Google.Wrappers.Comments
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        CommentsResource.DeleteRequest Impl { get; }
+    }
+
+    public class DeleteRequestWrapper : IDeleteRequest
+    {
+        public DeleteRequestWrapper(CommentsResource.DeleteRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public CommentsResource.DeleteRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string CommentId => Impl.CommentId;
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

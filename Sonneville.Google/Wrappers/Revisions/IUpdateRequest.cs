@@ -1,4 +1,6 @@
-﻿namespace Sonneville.Google.Wrappers.Revisions
+﻿using Google.Apis.Drive.v3;
+
+namespace Sonneville.Google.Wrappers.Revisions
 {
     public interface IUpdateRequest
     {
@@ -16,5 +18,27 @@
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        RevisionsResource.UpdateRequest Impl { get; }
+    }
+
+    public class UpdateRequestWrapper : IUpdateRequest
+    {
+        public UpdateRequestWrapper(RevisionsResource.UpdateRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public RevisionsResource.UpdateRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string RevisionId => Impl.RevisionId;
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

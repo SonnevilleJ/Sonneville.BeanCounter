@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Replies
 {
     public interface IListRequest
@@ -33,5 +35,45 @@ namespace Sonneville.Google.Wrappers.Replies
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        RepliesResource.ListRequest Impl { get; }
+    }
+
+    public class ListRequestWrapper : IListRequest
+    {
+        public ListRequestWrapper(RepliesResource.ListRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public RepliesResource.ListRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string CommentId => Impl.CommentId;
+
+        public bool? IncludeDeleted
+        {
+            get { return Impl.IncludeDeleted; }
+            set { Impl.IncludeDeleted = value; }
+        }
+
+        public int? PageSize
+        {
+            get { return Impl.PageSize; }
+            set { Impl.PageSize = value; }
+        }
+
+        public string PageToken
+        {
+            get { return Impl.PageToken; }
+            set { Impl.PageToken = value; }
+        }
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

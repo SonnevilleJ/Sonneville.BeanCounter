@@ -6,71 +6,39 @@ using System.Threading.Tasks;
 using Google.Apis;
 using Google.Apis.Discovery;
 using Google.Apis.Drive.v3;
+using File = Google.Apis.Drive.v3.Data.File;
 using Google.Apis.Services;
 
 namespace Sonneville.Google.Wrappers.Files
 {
-    public interface IDeleteRequest
+    public class CopyRequestWrapper : ICopyRequest
     {
-        /// <summary>The ID of the file.</summary>
-        string FileId { get; }
-
-        /// <summary>Gets the method name.</summary>
-        string MethodName { get; }
-
-        /// <summary>Gets the HTTP method.</summary>
-        string HttpMethod { get; }
-
-        /// <summary>Gets the REST path.</summary>
-        string RestPath { get; }
-
-        FilesResource.DeleteRequest.AltEnum? Alt { get; set; }
-
-        string Fields { get; set; }
-
-        string Key { get; set; }
-
-        string OauthToken { get; set; }
-
-        bool? PrettyPrint { get; set; }
-
-        string QuotaUser { get; set; }
-
-        string UserIp { get; set; }
-
-        ETagAction ETagAction { get; set; }
-
-        IDictionary<string, IParameter> RequestParameters { get; }
-
-        IClientService Service { get; }
-
-        FilesResource.DeleteRequest Impl { get; }
-
-        string Execute();
-
-        Stream ExecuteAsStream();
-
-        Task<string> ExecuteAsync();
-
-        Task<string> ExecuteAsync(CancellationToken cancellationToken);
-
-        Task<Stream> ExecuteAsStreamAsync();
-
-        Task<Stream> ExecuteAsStreamAsync(CancellationToken cancellationToken);
-
-        HttpRequestMessage CreateRequest(bool? overrideGZipEnabled);
-    }
-
-    public class DeleteRequestWrapper : IDeleteRequest
-    {
-        public DeleteRequestWrapper(FilesResource.DeleteRequest impl)
+        public CopyRequestWrapper(FilesResource.CopyRequest impl)
         {
             Impl = impl;
         }
 
-        public FilesResource.DeleteRequest Impl { get; }
+        public FilesResource.CopyRequest Impl { get; }
 
         public string FileId => Impl.FileId;
+
+        public bool? IgnoreDefaultVisibility
+        {
+            get { return Impl.IgnoreDefaultVisibility; }
+            set { Impl.IgnoreDefaultVisibility = value; }
+        }
+
+        public bool? KeepRevisionForever
+        {
+            get { return Impl.KeepRevisionForever; }
+            set { Impl.KeepRevisionForever = value; }
+        }
+
+        public string OcrLanguage
+        {
+            get { return Impl.OcrLanguage; }
+            set { Impl.OcrLanguage = value; }
+        }
 
         public string MethodName => Impl.MethodName;
 
@@ -78,7 +46,7 @@ namespace Sonneville.Google.Wrappers.Files
 
         public string RestPath => Impl.RestPath;
 
-        public DriveBaseServiceRequest<string>.AltEnum? Alt
+        public DriveBaseServiceRequest<File>.AltEnum? Alt
         {
             get { return Impl.Alt; }
             set { Impl.Alt = value; }
@@ -130,9 +98,9 @@ namespace Sonneville.Google.Wrappers.Files
 
         public IClientService Service => Impl.Service;
 
-        public string Execute()
+        public IFile Execute()
         {
-            return Impl.Execute();
+            return new FileWrapper(Impl.Execute());
         }
 
         public Stream ExecuteAsStream()
@@ -140,12 +108,12 @@ namespace Sonneville.Google.Wrappers.Files
             return Impl.ExecuteAsStream();
         }
 
-        public Task<string> ExecuteAsync()
+        public Task ExecuteAsync()
         {
             return Impl.ExecuteAsync();
         }
 
-        public Task<string> ExecuteAsync(CancellationToken cancellationToken)
+        public Task ExecuteAsync(CancellationToken cancellationToken)
         {
             return Impl.ExecuteAsync(cancellationToken);
         }

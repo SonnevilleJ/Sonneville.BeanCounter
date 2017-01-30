@@ -1,4 +1,5 @@
 ﻿using System;
+using Google.Apis.Drive.v3.Data;
 
 namespace Sonneville.Google.Wrappers.Revisions
 {
@@ -52,5 +53,101 @@ namespace Sonneville.Google.Wrappers.Revisions
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        Revision Impl { get; }
+    }
+
+    public class RevisionWrapper : IRevision
+    {
+        public RevisionWrapper(Revision impl)
+        {
+            Impl = impl;
+        }
+
+        public Revision Impl { get; }
+
+        public string Id
+        {
+            get { return Impl.Id; }
+            set { Impl.Id = value; }
+        }
+
+        public bool? KeepForever
+        {
+            get { return Impl.KeepForever; }
+            set { Impl.KeepForever = value; }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public IUser LastModifyingUser
+        {
+            get { return new UserWrapper(Impl.LastModifyingUser); }
+            set { Impl.LastModifyingUser = value.Impl; }
+        }
+
+        public string Md5Checksum
+        {
+            get { return Impl.Md5Checksum; }
+            set { Impl.Md5Checksum = value; }
+        }
+
+        public string MimeType
+        {
+            get { return Impl.MimeType; }
+            set { Impl.MimeType = value; }
+        }
+
+        public string ModifiedTimeRaw
+        {
+            get { return Impl.ModifiedTimeRaw; }
+            set { Impl.ModifiedTimeRaw = value; }
+        }
+
+        public DateTime? ModifiedTime
+        {
+            get { return Impl.ModifiedTime; }
+            set { Impl.ModifiedTime = value; }
+        }
+
+        public string OriginalFilename
+        {
+            get { return Impl.OriginalFilename; }
+            set { Impl.OriginalFilename = value; }
+        }
+
+        public bool? PublishAuto
+        {
+            get { return Impl.PublishAuto; }
+            set { Impl.PublishAuto = value; }
+        }
+
+        public bool? Published
+        {
+            get { return Impl.Published; }
+            set { Impl.Published = value; }
+        }
+
+        public bool? PublishedOutsideDomain
+        {
+            get { return Impl.PublishedOutsideDomain; }
+            set { Impl.PublishedOutsideDomain = value; }
+        }
+
+        public long? Size
+        {
+            get { return Impl.Size; }
+            set { Impl.Size = value; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Google.Apis.Drive.v3.Data;
 
 namespace Sonneville.Google.Wrappers.Files
 {
@@ -16,5 +18,41 @@ namespace Sonneville.Google.Wrappers.Files
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        FileList Impl { get; }
+    }
+
+    public class FileListWrapper : IFileList
+    {
+        public FileListWrapper(FileList impl)
+        {
+            Impl = impl;
+        }
+
+        public FileList Impl { get; }
+
+        public IList<IFile> Files
+        {
+            get { return Impl.Files.Select(file => new FileWrapper(file)).Cast<IFile>().ToList(); }
+            set { Impl.Files = value.Select(file => file.Impl).ToList(); }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public string NextPageToken
+        {
+            get { return Impl.NextPageToken; }
+            set { Impl.NextPageToken = value; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

@@ -42,5 +42,89 @@ namespace Sonneville.Google.Wrappers.Replies
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        Reply Impl { get; }
+    }
+
+    public class ReplyWrapper : IReply
+    {
+        public ReplyWrapper(Reply impl)
+        {
+            Impl = impl;
+        }
+
+        public Reply Impl { get; }
+
+        public string Action
+        {
+            get { return Impl.Action; }
+            set { Impl.Action = value; }
+        }
+
+        public User Author
+        {
+            get { return Impl.Author; }
+            set { Impl.Author = value; }
+        }
+
+        public string Content
+        {
+            get { return Impl.Content; }
+            set { Impl.Content = value; }
+        }
+
+        public string CreatedTimeRaw
+        {
+            get { return Impl.CreatedTimeRaw; }
+            set { Impl.CreatedTimeRaw = value; }
+        }
+
+        public DateTime? CreatedTime
+        {
+            get { return Impl.CreatedTime; }
+            set { Impl.CreatedTime = value; }
+        }
+
+        public bool? Deleted
+        {
+            get { return Impl.Deleted; }
+            set { Impl.Deleted = value; }
+        }
+
+        public string HtmlContent
+        {
+            get { return Impl.HtmlContent; }
+            set { Impl.HtmlContent = value; }
+        }
+
+        public string Id
+        {
+            get { return Impl.Id; }
+            set { Impl.Id = value; }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public string ModifiedTimeRaw
+        {
+            get { return Impl.ModifiedTimeRaw; }
+            set { Impl.ModifiedTimeRaw = value; }
+        }
+
+        public DateTime? ModifiedTime
+        {
+            get { return Impl.ModifiedTime; }
+            set { Impl.ModifiedTime = value; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

@@ -52,7 +52,7 @@ namespace Sonneville.Google.Wrappers.Changes
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
 
-        DriveBaseServiceRequest<IChangeList>.AltEnum? Alt { get; set; }
+        ChangesResource.ListRequest.AltEnum? Alt { get; set; }
 
         string Fields { get; set; }
 
@@ -72,6 +72,8 @@ namespace Sonneville.Google.Wrappers.Changes
 
         IClientService Service { get; }
 
+        ChangesResource.ListRequest Impl { get; }
+
         IChangeList Execute();
 
         Stream ExecuteAsStream();
@@ -85,5 +87,138 @@ namespace Sonneville.Google.Wrappers.Changes
         Task<Stream> ExecuteAsStreamAsync(CancellationToken cancellationToken);
 
         HttpRequestMessage CreateRequest(bool? overrideGZipEnabled);
+    }
+
+    public class ListRequestWrapper : IListRequest
+    {
+        public ListRequestWrapper(ChangesResource.ListRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public ChangesResource.ListRequest Impl { get; }
+
+        public string PageToken => Impl.PageToken;
+
+        public bool? IncludeRemoved
+        {
+            get { return Impl.IncludeRemoved; }
+            set { Impl.IncludeRemoved = value; }
+        }
+
+        public int? PageSize
+        {
+            get { return Impl.PageSize; }
+            set { Impl.PageSize = value; }
+        }
+
+        public bool? RestrictToMyDrive
+        {
+            get { return Impl.RestrictToMyDrive; }
+            set { Impl.RestrictToMyDrive = value; }
+        }
+
+        public string Spaces
+        {
+            get { return Impl.Spaces; }
+            set { Impl.Spaces = value; }
+        }
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
+
+        public ChangesResource.ListRequest.AltEnum? Alt
+        {
+            get { return Impl.Alt; }
+            set { Impl.Alt = value; }
+        }
+
+        public string Fields
+        {
+            get { return Impl.Fields; }
+            set { Impl.Fields = value; }
+        }
+
+        public string Key
+        {
+            get { return Impl.Key; }
+            set { Impl.Key = value; }
+        }
+
+        public string OauthToken
+        {
+            get { return Impl.OauthToken; }
+            set { Impl.OauthToken = value; }
+        }
+
+        public bool? PrettyPrint
+        {
+            get { return Impl.PrettyPrint; }
+            set { Impl.PrettyPrint = value; }
+        }
+
+        public string QuotaUser
+        {
+            get { return Impl.QuotaUser; }
+            set { Impl.QuotaUser = value; }
+        }
+
+        public string UserIp
+        {
+            get { return Impl.UserIp; }
+            set { Impl.UserIp = value; }
+        }
+
+        public ETagAction ETagAction
+        {
+            get { return Impl.ETagAction; }
+            set { Impl.ETagAction = value; }
+        }
+
+        public IDictionary<string, IParameter> RequestParameters => Impl.RequestParameters;
+
+        public IClientService Service => Impl.Service;
+
+        public IChangeList Execute()
+        {
+            return new ChangeListWrapper(Impl.Execute());
+        }
+
+        public Stream ExecuteAsStream()
+        {
+            return Impl.ExecuteAsStream();
+        }
+
+        public Task<IChangeList> ExecuteAsync()
+        {
+            return Task
+                .Run(() => Impl.ExecuteAsync())
+                .ContinueWith(task => new ChangeListWrapper(task.Result) as IChangeList);
+        }
+
+        public Task<IChangeList> ExecuteAsync(CancellationToken cancellationToken)
+        {
+            return Task
+                .Run(() => Impl.ExecuteAsync(cancellationToken), cancellationToken)
+                .ContinueWith(task => new ChangeListWrapper(task.Result) as IChangeList, cancellationToken);
+        }
+
+        public Task<Stream> ExecuteAsStreamAsync()
+        {
+            return Impl.ExecuteAsStreamAsync();
+        }
+
+        public Task<Stream> ExecuteAsStreamAsync(CancellationToken cancellationToken)
+        {
+            return Impl.ExecuteAsStreamAsync(cancellationToken);
+        }
+
+        public HttpRequestMessage CreateRequest(bool? overrideGZipEnabled)
+        {
+            return Impl.CreateRequest(overrideGZipEnabled);
+        }
     }
 }

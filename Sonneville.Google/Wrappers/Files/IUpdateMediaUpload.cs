@@ -55,5 +55,91 @@ namespace Sonneville.Google.Wrappers.Files
         /// 
         ///             [default: false]
         bool? UseContentAsIndexableText { get; set; }
+
+        FilesResource.UpdateMediaUpload Impl { get; }
+    }
+
+    public class UpdateMediaUploadWrapper : IUpdateMediaUpload
+    {
+        public UpdateMediaUploadWrapper(FilesResource.UpdateMediaUpload impl)
+        {
+            Impl = impl;
+        }
+
+        public FilesResource.UpdateMediaUpload Impl { get; }
+
+        public FilesResource.UpdateMediaUpload.AltEnum? Alt
+        {
+            get { return Impl.Alt; }
+            set { Impl.Alt = value; }
+        }
+
+        public string Fields
+        {
+            get { return Impl.Fields; }
+            set { Impl.Fields = value; }
+        }
+
+        public string Key
+        {
+            get { return Impl.Key; }
+            set { Impl.Key = value; }
+        }
+
+        public string OauthToken
+        {
+            get { return Impl.OauthToken; }
+            set { Impl.OauthToken = value; }
+        }
+
+        public bool? PrettyPrint
+        {
+            get { return Impl.PrettyPrint; }
+            set { Impl.PrettyPrint = value; }
+        }
+
+        public string QuotaUser
+        {
+            get { return Impl.QuotaUser; }
+            set { Impl.QuotaUser = value; }
+        }
+
+        public string UserIp
+        {
+            get { return Impl.UserIp; }
+            set { Impl.UserIp = value; }
+        }
+
+        public string FileId => Impl.FileId;
+
+        public string AddParents
+        {
+            get { return Impl.AddParents; }
+            set { Impl.AddParents = value; }
+        }
+
+        public bool? KeepRevisionForever
+        {
+            get { return Impl.KeepRevisionForever; }
+            set { Impl.KeepRevisionForever = value; }
+        }
+
+        public string OcrLanguage
+        {
+            get { return Impl.OcrLanguage; }
+            set { Impl.OcrLanguage = value; }
+        }
+
+        public string RemoveParents
+        {
+            get { return Impl.RemoveParents; }
+            set { Impl.RemoveParents = value; }
+        }
+
+        public bool? UseContentAsIndexableText
+        {
+            get { return Impl.UseContentAsIndexableText; }
+            set { Impl.UseContentAsIndexableText = value; }
+        }
     }
 }

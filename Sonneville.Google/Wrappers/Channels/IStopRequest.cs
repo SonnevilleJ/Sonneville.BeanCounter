@@ -1,4 +1,6 @@
-﻿namespace Sonneville.Google.Wrappers.Channels
+﻿using Google.Apis.Drive.v3;
+
+namespace Sonneville.Google.Wrappers.Channels
 {
     public interface IStopRequest
     {
@@ -10,5 +12,23 @@
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        ChannelsResource.StopRequest Impl { get; }
+    }
+
+    public class StopRequestWrapper : IStopRequest
+    {
+        public StopRequestWrapper(ChannelsResource.StopRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public ChannelsResource.StopRequest Impl { get; }
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Upload;
+using File = Google.Apis.Drive.v3.Data.File;
 
 namespace Sonneville.Google.Wrappers.Files
 {
@@ -76,6 +77,8 @@ namespace Sonneville.Google.Wrappers.Files
 
         int ChunkSize { get; set; }
 
+        FilesResource.CreateMediaUpload Impl { get; }
+
         event Action<IFile> ResponseReceived;
 
         IUploadProgress GetProgress();
@@ -101,5 +104,178 @@ namespace Sonneville.Google.Wrappers.Files
         event Action<IUploadProgress> ProgressChanged;
 
         event Action<IUploadSessionData> UploadSessionData;
+    }
+
+    public class CreateMediaUploadWrapper : ICreateMediaUpload
+    {
+        public CreateMediaUploadWrapper(FilesResource.CreateMediaUpload impl)
+        {
+            Impl = impl;
+        }
+
+        public FilesResource.CreateMediaUpload Impl { get; }
+
+        public FilesResource.CreateMediaUpload.AltEnum? Alt
+        {
+            get { return Impl.Alt; }
+            set { Impl.Alt = value; }
+        }
+
+        public string Fields
+        {
+            get { return Impl.Fields; }
+            set { Impl.Fields = value; }
+        }
+
+        public string Key
+        {
+            get { return Impl.Key; }
+            set { Impl.Key = value; }
+        }
+
+        public string OauthToken
+        {
+            get { return Impl.OauthToken; }
+            set { Impl.OauthToken = value; }
+        }
+
+        public bool? PrettyPrint
+        {
+            get { return Impl.PrettyPrint; }
+            set { Impl.PrettyPrint = value; }
+        }
+
+        public string QuotaUser
+        {
+            get { return Impl.QuotaUser; }
+            set { Impl.QuotaUser = value; }
+        }
+
+        public string UserIp
+        {
+            get { return Impl.UserIp; }
+            set { Impl.UserIp = value; }
+        }
+
+        public bool? IgnoreDefaultVisibility
+        {
+            get { return Impl.IgnoreDefaultVisibility; }
+            set { Impl.IgnoreDefaultVisibility = value; }
+        }
+
+        public bool? KeepRevisionForever
+        {
+            get { return Impl.KeepRevisionForever; }
+            set { Impl.KeepRevisionForever = value; }
+        }
+
+        public string OcrLanguage
+        {
+            get { return Impl.OcrLanguage; }
+            set { Impl.OcrLanguage = value; }
+        }
+
+        public bool? UseContentAsIndexableText
+        {
+            get { return Impl.UseContentAsIndexableText; }
+            set { Impl.UseContentAsIndexableText = value; }
+        }
+
+        public IFile ResponseBody => new FileWrapper(Impl.ResponseBody);
+
+        public IClientService Service => Impl.Service;
+
+        public string Path => Impl.Path;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public Stream ContentStream => Impl.ContentStream;
+
+        public string ContentType => Impl.ContentType;
+
+        public IFile Body
+        {
+            get { return new FileWrapper(Impl.Body); }
+            set { Impl.Body = value.Impl; }
+        }
+
+        public int ChunkSize
+        {
+            get { return Impl.ChunkSize; }
+            set { Impl.ChunkSize = value; }
+        }
+
+        public event Action<IFile> ResponseReceived
+        {
+            add { Impl.ResponseReceived += ImplOnResponseReceived(value); }
+            remove { Impl.ResponseReceived -= ImplOnResponseReceived(value); }
+        }
+
+        private static Action<File> ImplOnResponseReceived(Action<IFile> value)
+        {
+            return file => value.Invoke(new FileWrapper(file));
+        }
+
+        public IUploadProgress GetProgress()
+        {
+            return Impl.GetProgress();
+        }
+
+        public IUploadProgress Upload()
+        {
+            return Impl.Upload();
+        }
+
+        public Task<IUploadProgress> UploadAsync()
+        {
+            return Impl.UploadAsync();
+        }
+
+        public Task<IUploadProgress> UploadAsync(CancellationToken cancellationToken)
+        {
+            return Impl.UploadAsync(cancellationToken);
+        }
+
+        public IUploadProgress Resume()
+        {
+            return Impl.Resume();
+        }
+
+        public IUploadProgress Resume(Uri uploadUri)
+        {
+            return Impl.Resume(uploadUri);
+        }
+
+        public Task<IUploadProgress> ResumeAsync()
+        {
+            return Impl.ResumeAsync();
+        }
+
+        public Task<IUploadProgress> ResumeAsync(CancellationToken cancellationToken)
+        {
+            return Impl.ResumeAsync(cancellationToken);
+        }
+
+        public Task<IUploadProgress> ResumeAsync(Uri uploadUri)
+        {
+            return Impl.ResumeAsync(uploadUri);
+        }
+
+        public Task<IUploadProgress> ResumeAsync(Uri uploadUri, CancellationToken cancellationToken)
+        {
+            return Impl.ResumeAsync(uploadUri, cancellationToken);
+        }
+
+        public event Action<IUploadProgress> ProgressChanged
+        {
+            add { Impl.ProgressChanged += value; }
+            remove { Impl.ProgressChanged -= value; }
+        }
+
+        public event Action<IUploadSessionData> UploadSessionData
+        {
+            add { Impl.UploadSessionData += value; }
+            remove { Impl.UploadSessionData -= value; }
+        }
     }
 }

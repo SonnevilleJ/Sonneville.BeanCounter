@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Permissions
 {
     public interface IGetRequest
@@ -16,5 +18,27 @@ namespace Sonneville.Google.Wrappers.Permissions
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        PermissionsResource.GetRequest Impl { get; }
+    }
+
+    public class GetRequestWrapper : IGetRequest
+    {
+        public GetRequestWrapper(PermissionsResource.GetRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public PermissionsResource.GetRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string PermissionId => Impl.PermissionId;
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

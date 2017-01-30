@@ -1,4 +1,6 @@
-﻿namespace Sonneville.Google.Wrappers.Permissions
+﻿using Google.Apis.Drive.v3;
+
+namespace Sonneville.Google.Wrappers.Permissions
 {
     public interface IUpdateRequest
     {
@@ -27,5 +29,39 @@
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        PermissionsResource.UpdateRequest Impl { get; }
+    }
+
+    public class UpdateRequestWrapper : IUpdateRequest
+    {
+        public UpdateRequestWrapper(PermissionsResource.UpdateRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public PermissionsResource.UpdateRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string PermissionId => Impl.PermissionId;
+
+        public bool? RemoveExpiration
+        {
+            get { return Impl.RemoveExpiration; }
+            set { Impl.RemoveExpiration = value; }
+        }
+
+        public bool? TransferOwnership
+        {
+            get { return Impl.TransferOwnership; }
+            set { Impl.TransferOwnership = value; }
+        }
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

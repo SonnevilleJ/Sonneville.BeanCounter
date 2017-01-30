@@ -1,4 +1,5 @@
 using System.IO;
+using Google.Apis.Drive.v3;
 
 namespace Sonneville.Google.Wrappers.Files
 {
@@ -59,5 +60,77 @@ namespace Sonneville.Google.Wrappers.Files
         /// <param name="body">The body of the request.</param>
         /// <param name="fileId">The ID of the file.</param>
         IWatchRequest Watch(IChannel body, string fileId);
+
+        FilesResource Impl { get; }
+    }
+
+    public class FilesResourceWrapper : IFilesResource
+    {
+        public FilesResourceWrapper(FilesResource impl)
+        {
+            Impl = impl;
+        }
+
+        public FilesResource Impl { get; }
+
+        public ICopyRequest Copy(IFile body, string fileId)
+        {
+            return new CopyRequestWrapper(Impl.Copy(body.Impl, fileId));
+        }
+
+        public ICreateRequest Create(IFile body)
+        {
+            return new CreateRequestWrapper(Impl.Create(body.Impl));
+        }
+
+        public ICreateMediaUpload Create(IFile body, Stream stream, string contentType)
+        {
+            return new CreateMediaUploadWrapper(Impl.Create(body.Impl, stream, contentType));
+        }
+
+        public IDeleteRequest Delete(string fileId)
+        {
+            return new DeleteRequestWrapper(Impl.Delete(fileId));
+        }
+
+        public IEmptyTrashRequest EmptyTrash()
+        {
+            return new EmptyTrashRequestWrapper(Impl.EmptyTrash());
+        }
+
+        public IExportRequest Export(string fileId, string mimeType)
+        {
+            return new ExportRequestWrapper(Impl.Export(fileId, mimeType));
+        }
+
+        public IGenerateIdsRequest GenerateIds()
+        {
+            return new GenerateIdsRequestWrapper(Impl.GenerateIds());
+        }
+
+        public IGetRequest Get(string fileId)
+        {
+            return new GetRequestWrapper(Impl.Get(fileId));
+        }
+
+        public IListRequest List()
+        {
+            return new ListRequestWrapper(Impl.List());
+        }
+
+        public IUpdateRequest Update(IFile body, string fileId)
+        {
+            return new UpdateRequestWrapper(Impl.Update(body.Impl, fileId));
+        }
+
+        public IUpdateMediaUpload Update(IFile body, string fileId, Stream stream, string contentType)
+        {
+            return new UpdateMediaUploadWrapper(Impl.Update(body.Impl, fileId, stream, contentType));
+        }
+
+        public IWatchRequest Watch(IChannel body, string fileId)
+        {
+            return new WatchRequestWrapper(Impl.Watch(body.Impl, fileId));
+        }
     }
 }

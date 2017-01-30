@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Permissions
 {
     public interface ICreateRequest
@@ -27,5 +29,43 @@ namespace Sonneville.Google.Wrappers.Permissions
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        PermissionsResource.CreateRequest CreateRequestImplementation { get; }
+    }
+
+    public class CreateRequestWrapper : ICreateRequest
+    {
+        public CreateRequestWrapper(PermissionsResource.CreateRequest createRequestImplementation)
+        {
+            CreateRequestImplementation = createRequestImplementation;
+        }
+
+        public PermissionsResource.CreateRequest CreateRequestImplementation { get; }
+
+        public string FileId => CreateRequestImplementation.FileId;
+
+        public string EmailMessage
+        {
+            get { return CreateRequestImplementation.EmailMessage; }
+            set { CreateRequestImplementation.EmailMessage = value; }
+        }
+
+        public bool? SendNotificationEmail
+        {
+            get { return CreateRequestImplementation.SendNotificationEmail; }
+            set { CreateRequestImplementation.SendNotificationEmail = value; }
+        }
+
+        public bool? TransferOwnership
+        {
+            get { return CreateRequestImplementation.TransferOwnership; }
+            set { CreateRequestImplementation.TransferOwnership = value; }
+        }
+
+        public string MethodName => CreateRequestImplementation.MethodName;
+
+        public string HttpMethod => CreateRequestImplementation.HttpMethod;
+
+        public string RestPath => CreateRequestImplementation.RestPath;
     }
 }

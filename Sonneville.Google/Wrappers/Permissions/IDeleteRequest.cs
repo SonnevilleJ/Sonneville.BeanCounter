@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Permissions
 {
     public interface IDeleteRequest
@@ -16,5 +18,27 @@ namespace Sonneville.Google.Wrappers.Permissions
 
         /// <summary>Gets the REST path.</summary>
         string RestPath { get; }
+
+        PermissionsResource.DeleteRequest Impl { get; }
+    }
+
+    public class DeleteRequestWrapper : IDeleteRequest
+    {
+        public DeleteRequestWrapper(PermissionsResource.DeleteRequest impl)
+        {
+            Impl = impl;
+        }
+
+        public PermissionsResource.DeleteRequest Impl { get; }
+
+        public string FileId => Impl.FileId;
+
+        public string PermissionId => Impl.PermissionId;
+
+        public string MethodName => Impl.MethodName;
+
+        public string HttpMethod => Impl.HttpMethod;
+
+        public string RestPath => Impl.RestPath;
     }
 }

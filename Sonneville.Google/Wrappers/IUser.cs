@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3.Data;
+
 namespace Sonneville.Google.Wrappers
 {
     public interface IUser
@@ -23,5 +25,59 @@ namespace Sonneville.Google.Wrappers
 
         /// <summary>The ETag of the item.</summary>
         string ETag { get; set; }
+
+        User Impl { get; }
+    }
+
+    public class UserWrapper : IUser
+    {
+        public UserWrapper(User impl)
+        {
+            Impl = impl;
+        }
+
+        public User Impl { get; }
+
+        public string DisplayName
+        {
+            get { return Impl.DisplayName; }
+            set { Impl.DisplayName = value; }
+        }
+
+        public string EmailAddress
+        {
+            get { return Impl.EmailAddress; }
+            set { Impl.EmailAddress = value; }
+        }
+
+        public string Kind
+        {
+            get { return Impl.Kind; }
+            set { Impl.Kind = value; }
+        }
+
+        public bool? Me
+        {
+            get { return Impl.Me; }
+            set { Impl.Me = value; }
+        }
+
+        public string PermissionId
+        {
+            get { return Impl.PermissionId; }
+            set { Impl.PermissionId = value; }
+        }
+
+        public string PhotoLink
+        {
+            get { return Impl.PhotoLink; }
+            set { Impl.PhotoLink = value; }
+        }
+
+        public string ETag
+        {
+            get { return Impl.ETag; }
+            set { Impl.ETag = value; }
+        }
     }
 }

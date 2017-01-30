@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Google.Apis.Drive.v3;
 using Sonneville.Google.Wrappers.About;
 using Sonneville.Google.Wrappers.Changes;
 using Sonneville.Google.Wrappers.Channels;
@@ -47,5 +48,41 @@ namespace Sonneville.Google.Wrappers
 
         /// <summary>Gets the Revisions resource.</summary>
         IRevisionsResource Revisions { get; }
+
+        DriveService Impl { get; }
+    }
+
+    public class DriveServiceWrapper : IDriveService
+    {
+        public DriveServiceWrapper(DriveService impl)
+        {
+            Impl = impl;
+        }
+
+        public DriveService Impl { get; }
+
+        public IList<string> Features => Impl.Features;
+
+        public string Name => Impl.Name;
+
+        public string BaseUri => Impl.BaseUri;
+
+        public string BasePath => Impl.BasePath;
+
+        public IAboutResource About => new AboutResourceWrapper(Impl.About);
+
+        public IChangesResource Changes => new ChangesResourceWrapper(Impl.Changes);
+
+        public IChannelsResource Channels => new ChannelsResourceWrapper(Impl.Channels);
+
+        public ICommentsResource Comments => new CommentsResourceWrapper(Impl.Comments);
+
+        public IFilesResource Files => new FilesResourceWrapper(Impl.Files);
+
+        public IPermissionsResource Permissions => new PermissionsResourceWrapper(Impl.Permissions);
+
+        public IRepliesResource Replies => new RepliesResourceWrapper(Impl.Replies);
+
+        public IRevisionsResource Revisions => new RevisionsResourceWrapper(Impl.Revisions);
     }
 }

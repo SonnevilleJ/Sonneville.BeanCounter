@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3;
+
 namespace Sonneville.Google.Wrappers.Comments
 {
     public interface ICommentsResource
@@ -26,5 +28,42 @@ namespace Sonneville.Google.Wrappers.Comments
         /// <param name="fileId">The ID of the file.</param>
         /// <param name="commentId">The ID of the comment.</param>
         IUpdateRequest Update(IComment body, string fileId, string commentId);
+
+        CommentsResource Impl { get; }
+    }
+
+    public class CommentsResourceWrapper : ICommentsResource
+    {
+        public CommentsResourceWrapper(CommentsResource impl)
+        {
+            Impl = impl;
+        }
+
+        public CommentsResource Impl { get; }
+
+        public ICreateRequest Create(IComment body, string fileId)
+        {
+            return new CreateRequestWrapper(Impl.Create(body.Impl, fileId));
+        }
+
+        public IDeleteRequest Delete(string fileId, string commentId)
+        {
+            return new DeleteRequestWrapper(Impl.Delete(fileId, commentId));
+        }
+
+        public IGetRequest Get(string fileId, string commentId)
+        {
+            return new GetRequestWrapper(Impl.Get(fileId, commentId));
+        }
+
+        public IListRequest List(string fileId)
+        {
+            return new ListRequestWrapper(Impl.List(fileId));
+        }
+
+        public IUpdateRequest Update(IComment body, string fileId, string commentId)
+        {
+            return new UpdateRequestWrapper(Impl.Update(body.Impl, fileId, commentId));
+        }
     }
 }

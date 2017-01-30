@@ -1,3 +1,5 @@
+using Google.Apis.Drive.v3.Data;
+
 namespace Sonneville.Google.Wrappers.Files
 {
     public interface IContentHintsData
@@ -9,5 +11,29 @@ namespace Sonneville.Google.Wrappers.Files
         /// <summary>A thumbnail for the file. This will only be used if Drive cannot generate a standard
         /// thumbnail.</summary>
         IThumbnailData Thumbnail { get; set; }
+
+        File.ContentHintsData Impl { get; }
+    }
+
+    public class ContentHintsData : IContentHintsData
+    {
+        public ContentHintsData(File.ContentHintsData impl)
+        {
+            Impl = impl;
+        }
+
+        public File.ContentHintsData Impl { get; }
+
+        public string IndexableText
+        {
+            get { return Impl.IndexableText; }
+            set { Impl.IndexableText = value; }
+        }
+
+        public IThumbnailData Thumbnail
+        {
+            get { return new ThumbnailDataWrapper(Impl.Thumbnail); }
+            set { Impl.Thumbnail = value.Impl; }
+        }
     }
 }
