@@ -1,108 +1,175 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{F89FAA1F-67FC-445B-B8DC-95B5225EEEB6}</ProjectGuid>
-        <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>Sonneville.Google</RootNamespace>
-        <AssemblyName>Sonneville.Google</AssemblyName>
-        <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference
-                Include="Google.Apis, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.1.20.0\lib\net45\Google.Apis.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Google.Apis.Auth, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.Auth.1.20.0\lib\net45\Google.Apis.Auth.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Google.Apis.Auth.PlatformServices, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.Auth.1.20.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Google.Apis.Core, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.Core.1.20.0\lib\net45\Google.Apis.Core.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Google.Apis.Drive.v3, Version=1.20.0.711, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.Drive.v3.1.20.0.711\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Google.Apis.PlatformServices, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-            <HintPath>..\packages\Google.Apis.1.20.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-            <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference
-                Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-            <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference Include="Sonneville.Utilities, Version=1.23.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\Sonneville.Utilities.1.23.0\lib\net452\Sonneville.Utilities.dll</HintPath>
-            <Private>True</Private>
-        </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
-        <Reference
-                Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
-            <HintPath>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F89FAA1F-67FC-445B-B8DC-95B5225EEEB6}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sonneville.Google</RootNamespace>
+    <AssemblyName>Sonneville.Google</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference
+            Include="Google.Apis, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.20.0\lib\net45\Google.Apis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Google.Apis.Auth, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.20.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Google.Apis.Auth.PlatformServices, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.20.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Google.Apis.Core, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.20.0\lib\net45\Google.Apis.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Google.Apis.Drive.v3, Version=1.20.0.711, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.20.0.711\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Google.Apis.PlatformServices, Version=1.20.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.20.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference
+            Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sonneville.Utilities, Version=1.23.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sonneville.Utilities.1.23.0\lib\net452\Sonneville.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Net.Http"/>
+    <Reference Include="System.Xml"/>
+    <Reference
+            Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>
                 ..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll
             </HintPath>
-            <Private>True</Private>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="GoogleOAuth.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Include="packages.config"/>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GoogleOAuth.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <Compile Include="Wrappers\About\IAbout.cs"/>
+    <Compile Include="Wrappers\About\IGetRequest.cs"/>
+    <Compile Include="Wrappers\About\IAboutResource.cs"/>
+    <Compile Include="Wrappers\About\IStorageQuotaData.cs"/>
+    <Compile Include="Wrappers\Changes\IChange.cs"/>
+    <Compile Include="Wrappers\Changes\IChangeList.cs"/>
+    <Compile Include="Wrappers\Changes\IChangesResource.cs"/>
+    <Compile Include="Wrappers\Changes\IGetStartPageTokenRequest.cs"/>
+    <Compile Include="Wrappers\Changes\IListRequest.cs"/>
+    <Compile Include="Wrappers\Changes\IStartPageToken.cs"/>
+    <Compile Include="Wrappers\Changes\IWatchRequest.cs"/>
+    <Compile Include="Wrappers\Channels\IChannelsResource.cs"/>
+    <Compile Include="Wrappers\Channels\IStopRequest.cs"/>
+    <Compile Include="Wrappers\Comments\IComment.cs"/>
+    <Compile Include="Wrappers\Comments\ICommentsResource.cs"/>
+    <Compile Include="Wrappers\Comments\ICreateRequest.cs"/>
+    <Compile Include="Wrappers\Comments\IDeleteRequest.cs"/>
+    <Compile Include="Wrappers\Comments\IGetRequest.cs"/>
+    <Compile Include="Wrappers\Comments\IListRequest.cs"/>
+    <Compile Include="Wrappers\Comments\IQuotedFileContentData.cs"/>
+    <Compile Include="Wrappers\Comments\IUpdateRequest.cs"/>
+    <Compile Include="Wrappers\Files\ICapabilitiesData.cs"/>
+    <Compile Include="Wrappers\Files\IContentHintsData.cs"/>
+    <Compile Include="Wrappers\Files\ICopyRequest.cs"/>
+    <Compile Include="Wrappers\Files\ICreateMediaUpload.cs"/>
+    <Compile Include="Wrappers\Files\ICreateRequest.cs"/>
+    <Compile Include="Wrappers\Files\IDeleteRequest.cs"/>
+    <Compile Include="Wrappers\Files\IEmptyTrashRequest.cs"/>
+    <Compile Include="Wrappers\Files\IExportRequest.cs"/>
+    <Compile Include="Wrappers\Files\IFile.cs"/>
+    <Compile Include="Wrappers\Files\IFileList.cs"/>
+    <Compile Include="Wrappers\Files\IFilesResource.cs"/>
+    <Compile Include="Wrappers\Files\IGeneratedIds.cs"/>
+    <Compile Include="Wrappers\Files\IGenerateIdsRequest.cs"/>
+    <Compile Include="Wrappers\Files\IGetRequest.cs"/>
+    <Compile Include="Wrappers\Files\IImageMediaMetadataData.cs"/>
+    <Compile Include="Wrappers\Files\IListRequest.cs"/>
+    <Compile Include="Wrappers\Files\ILocationData.cs"/>
+    <Compile Include="Wrappers\Files\IThumbnailData.cs"/>
+    <Compile Include="Wrappers\Files\IUpdateMediaUpload.cs"/>
+    <Compile Include="Wrappers\Files\IUpdateRequest.cs"/>
+    <Compile Include="Wrappers\Files\IVideoMediaMetadataData.cs"/>
+    <Compile Include="Wrappers\Files\IWatchRequest.cs"/>
+    <Compile Include="Wrappers\IChannel.cs"/>
+    <Compile Include="Wrappers\IDriveService.cs"/>
+    <Compile Include="Wrappers\IPermission.cs"/>
+    <Compile Include="Wrappers\IUser.cs"/>
+    <Compile Include="Wrappers\Permissions\ICreateRequest.cs"/>
+    <Compile Include="Wrappers\Permissions\IDeleteRequest.cs"/>
+    <Compile Include="Wrappers\Permissions\IGetRequest.cs"/>
+    <Compile Include="Wrappers\Permissions\IListRequest.cs"/>
+    <Compile Include="Wrappers\Permissions\IPermissionsResource.cs"/>
+    <Compile Include="Wrappers\Permissions\IUpdateRequest.cs"/>
+    <Compile Include="Wrappers\Replies\ICreateRequest.cs"/>
+    <Compile Include="Wrappers\Replies\IDeleteRequest.cs"/>
+    <Compile Include="Wrappers\Replies\IGetRequest.cs"/>
+    <Compile Include="Wrappers\Replies\IListRequest.cs"/>
+    <Compile Include="Wrappers\Replies\IRepliesResource.cs"/>
+    <Compile Include="Wrappers\Replies\IReply.cs"/>
+    <Compile Include="Wrappers\Replies\IUpdateRequest.cs"/>
+    <Compile Include="Wrappers\Revisions\IDeleteRequest.cs"/>
+    <Compile Include="Wrappers\Revisions\IGetRequest.cs"/>
+    <Compile Include="Wrappers\Revisions\IListRequest.cs"/>
+    <Compile Include="Wrappers\Revisions\IRevision.cs"/>
+    <Compile Include="Wrappers\Revisions\IRevisionsResource.cs"/>
+    <Compile Include="Wrappers\Revisions\IUpdateRequest.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config"/>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+                 Other similar extension points exist, see Microsoft.Common.targets.
+            <Target Name="BeforeBuild">
+            </Target>
+            <Target Name="AfterBuild">
+            </Target>
+            -->
 </Project>
