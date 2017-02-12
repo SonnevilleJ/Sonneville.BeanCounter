@@ -7,6 +7,7 @@ using Google.Apis;
 using Google.Apis.Discovery;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
+using Sonneville.Google.Wrappers.Data;
 
 namespace Sonneville.Google.Wrappers.Changes
 {

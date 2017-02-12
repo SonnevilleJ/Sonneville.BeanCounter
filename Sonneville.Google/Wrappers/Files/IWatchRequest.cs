@@ -9,6 +9,7 @@ using Google.Apis.Download;
 using Google.Apis.Drive.v3;
 using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
+using Sonneville.Google.Wrappers.Data;
 
 namespace Sonneville.Google.Wrappers.Files
 {

@@ -1,7 +1,7 @@
 using System;
 using Google.Apis.Drive.v3.Data;
 
-namespace Sonneville.Google.Wrappers
+namespace Sonneville.Google.Wrappers.Data
 {
     public interface IPermission
     {

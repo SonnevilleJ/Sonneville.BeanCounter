@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sonneville.Google.Wrappers.Data;
 
 namespace Sonneville.Google.Wrappers.About
 {
