@@ -8,11 +8,11 @@ namespace OwinWebApp
         public static void Main(string[] args)
         {
             const int port = 1234;
-            string baseAddress = $"http://localhost:{port}/";
+            string baseAddress = $"http://*:{port}/";
 
             using (WebApp.Start<Startup>(baseAddress))
             {
-                Console.WriteLine($"Listening on ${baseAddress}");
+                Console.WriteLine($"Listening on {baseAddress}");
                 Console.ReadLine();
             }
         }

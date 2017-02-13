@@ -152,7 +152,7 @@
     <Content Include="Google API Credentials.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\hello.html">
+      <Content Include="Resources\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
