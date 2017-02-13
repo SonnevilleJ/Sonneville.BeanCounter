@@ -149,6 +149,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+      <Content Include="Dockerfile">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     <Content Include="Google API Credentials.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

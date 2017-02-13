@@ -2,8 +2,7 @@ FROM mono:latest
 
 MAINTAINER John Sonneville <SonnevilleJ@gmail.com>
 
-ADD OwinWebApp/bin/Release/ /opt/BeanCounter/
-ADD OwinWebApp/Resources/ /opt/BeanCounter/Resources
+COPY * /opt/BeanCounter/
 
 EXPOSE 1234
 
