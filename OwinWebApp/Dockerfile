@@ -3,7 +3,8 @@ FROM mono:latest
 MAINTAINER John Sonneville <SonnevilleJ@gmail.com>
 
 COPY * /opt/BeanCounter/
+COPY Resources/* /opt/BeanCounter/Resources/
 
-EXPOSE 1234
+EXPOSE 80
 
 CMD ["mono", "/opt/BeanCounter/OwinWebApp.exe"]

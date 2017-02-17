@@ -2,11 +2,14 @@
 
 namespace OwinWebApp
 {
+    [RoutePrefix("api/hello")]
     public class HelloController : ApiController
     {
-        public string Get(string id = "World")
+        [Route("{name}")]
+        [HttpGet]
+        public string Greet(string name = "World")
         {
-            return $"Hello, {id}!";
+            return $"Hello, {name}!";
         }
     }
 }

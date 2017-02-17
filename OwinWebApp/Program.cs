@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Owin.Hosting;
+using UnixSignalWaiter;
 
 namespace OwinWebApp
 {
@@ -7,13 +8,13 @@ namespace OwinWebApp
     {
         public static void Main(string[] args)
         {
-            const int port = 1234;
+            const int port = 80;
             string baseAddress = $"http://*:{port}/";
 
             using (WebApp.Start<Startup>(baseAddress))
             {
                 Console.WriteLine($"Listening on {baseAddress}");
-                Console.ReadLine();
+                SignalWaiter.Instance.WaitExitSignal();
             }
         }
     }
