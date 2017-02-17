@@ -2,6 +2,8 @@
 
 A webapp to view and manage finances. Connects to Fidelity accounts through [FidelityWebDriver](https://github.com/SonnevilleJ/FidelityWebDriver).
 
+Build status: ![Build Status](http://sonnevillej.privatedns.org:9000/app/rest/builds/buildType:(id:BeanCounter_Build)/statusIcon)
+
 ## Developing
 After cloning this repo, there are two things you must do before launching the app.
 
