@@ -1,20 +1,17 @@
-﻿using System;
-using Microsoft.Owin.Hosting;
-using UnixSignalWaiter;
+﻿using Ninject;
+using Sonneville.BeanCounter.OwinWebApp.DependencyInjection;
 
-namespace OwinWebApp
+namespace Sonneville.BeanCounter.OwinWebApp
 {
     public static class Program
     {
+        public static readonly IKernel Kernel = new KernelBuilder().Build();
+
         public static void Main(string[] args)
         {
-            const int port = 80;
-            string baseAddress = $"http://*:{port}/";
-
-            using (WebApp.Start<Startup>(baseAddress))
+            using (var app = Kernel.Get<IApp>())
             {
-                Console.WriteLine($"Listening on {baseAddress}");
-                SignalWaiter.Instance.WaitExitSignal();
+                app.Run(args);
             }
         }
     }

@@ -8,7 +8,7 @@ using Google.Apis.Services;
 using Sonneville.Google;
 using Sonneville.Utilities.Reflection;
 
-namespace OwinWebApp
+namespace Sonneville.BeanCounter.OwinWebApp
 {
     public class GDriveController : ApiController
     {

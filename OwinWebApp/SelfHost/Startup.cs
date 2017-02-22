@@ -3,7 +3,7 @@ using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Owin;
 
-namespace OwinWebApp
+namespace Sonneville.BeanCounter.OwinWebApp.SelfHost
 {
     public sealed class Startup
     {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sonneville.Google", "Sonnev
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AF8513B7-8E31-46E3-959D-83B7B48F9B00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinWebAppTest", "OwinWebAppTest\OwinWebAppTest.csproj", "{711177C6-5110-4642-9169-8A9028C72331}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{F89FAA1F-67FC-445B-B8DC-95B5225EEEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F89FAA1F-67FC-445B-B8DC-95B5225EEEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F89FAA1F-67FC-445B-B8DC-95B5225EEEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711177C6-5110-4642-9169-8A9028C72331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711177C6-5110-4642-9169-8A9028C72331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711177C6-5110-4642-9169-8A9028C72331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711177C6-5110-4642-9169-8A9028C72331}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace OwinWebApp
+namespace Sonneville.BeanCounter.OwinWebApp
 {
     [RoutePrefix("api/hello")]
     public class HelloController : ApiController
