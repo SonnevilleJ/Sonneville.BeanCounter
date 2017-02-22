@@ -24,7 +24,7 @@ namespace Sonneville.BeanCounter.OwinWebApp.DependencyInjection
             Bind<Func<string, IDisposable>>().ToConstant(starter).WhenInjectedInto<IApp>();
 
             const string hostname = "localhost";
-            const string port = "8080";
+            const string port = "80";
             var bindAddress = $"http://{hostname}:{port}/";
             Bind<string>().ToConstant(bindAddress).WhenInjectedInto<IApp>();
         }
