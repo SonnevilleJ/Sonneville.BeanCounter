@@ -7,4 +7,4 @@ COPY Resources/* /opt/BeanCounter/Resources/
 
 EXPOSE 80
 
-CMD ["mono", "/opt/BeanCounter/OwinWebApp.exe"]
+CMD ["mono", "/opt/BeanCounter/Sonneville.BeanCounter.OwinWebApp.exe"]
